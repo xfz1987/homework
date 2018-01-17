@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="renderer" content="webkit"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true"><meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait"><meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+	<title>点赞-demo</title>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<h2>点赞数到100后清零</h2>
+	<div class="praise-area">
+		<div id="praise-btn" class="component-praise"></div>
+		<span class="praise-num"></span>
+	</div>
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/systemjs/0.20.19/system.js"></script>
+	<script>
+		SystemJS.import('./dist/app.js').then(function(m){
+			$.fn.extend({
+				praise: function(_className, fn){
+					new m.Thumb('#praise-btn', _className, fn);
+				}
+			});
+
+			var praiseNumNode = $('.praise-num'); 
+			$('#praise-btn').praise('component-praise__active', function(num){
+				praiseNumNode.text(num==100?'':num);
+			});
+		});
+	</script>
+</body>
+</html>

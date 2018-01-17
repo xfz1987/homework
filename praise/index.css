@@ -1,0 +1,12 @@
+:root{
+	--dd: #d0d0d0;
+};
+*{padding:0;padding:0;}
+.praise-area{margin-top:100px;display: flex;justify-content: center;align-items: center;cursor: pointer;}
+.component-praise{box-sizing: border-box;position:relative;width:45px;height:30px;background:var(--dd);border-right:none;border-radius:5px;background: linear-gradient(-75deg,transparent 5px,var(--dd) 0);border-bottom-right-radius: 15px;}
+.component-praise:before,.component-praise:after{content:'';display: block;position:absolute;}
+.component-praise:before{width:25px;height:25px;background:var(--dd);left:50%;top:-20px;transform:translateX(-60%);border-radius:27%;}
+.component-praise:after{width:30px;height:40px;background:#fff;left:-6px;top:-40px;border-radius:50%;}
+.praise-num{color: var(--dd);margin-left:10px;}
+.component-praise__active{--dd: red;}
+.component-praise__active+.praise-num{--dd: red;}
