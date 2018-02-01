@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {%endblock%}
+
+{% block head %}
+	<link rel="stylesheet" href="/sheetstyles/index.css">
+{% endblock %}
+
+{% block content %}
+	<div class="hand" id="thumb">
+        <div class="finger"></div>
+        <div class="finger"></div>
+        <div class="finger"></div>
+        <div class="finger"></div>
+        <div class="finger thumb"></div>
+        <div class="arm"></div>
+    </div>
+    <span class="hide" id="animation">+1</span>
+	<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+    <script src="http://cdn.bootcss.com/systemjs/0.20.2/system.js"></script>
+	<script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js"></script>
+	<script src="/scripts/util.js"></script>
+	<script>
+		SystemJS.import('/scripts/index-es.js').then(function(m){
+        	$.extend({thumb: m.Thumb});
+        	callback();
+    	});
+    	function callback(){
+    		axios.get('/queryPraise')
+  			.then(function(response){
+  				var data = response.data;
+  				if(data.status){
+  					console.log('初始数量: ' + data.total);
+  					var p = new $.thumb(data.total, $('#thumb'));
+    				p.clickAction(changeCount);
+  				}else{
+  					alert('获取点赞数据出错!');
+  				}
+  			})
+  			.catch(function(err){
+    			console.log(err);
+  			});	
+    	}
+
+    	function changeCount(num){
+    		console.log(num);
+    		axios.post('/updatePraise',{count: num})
+  			.then(function(response){
+  				console.log(response.data.status);
+    			!response.data.status && alert('服务器繁忙，请稍后...');
+  			})
+  			.catch(function(err){
+    			console.log(err);
+  			});
+    	}
+	</script>
+{% endblock %}

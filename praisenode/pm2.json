@@ -1,0 +1,9 @@
+{
+	"name":"praise-app",
+	"script":"app.js",
+	"log_data_format":"YYYY-MM-DD HH:mm: Z",
+	"out_file":"log/node-app.stuout.log",
+	"watch":true,
+	"instances":"max",
+	"exec_mode":"cluster"
+}
