@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {%endblock%}
+
+{% block head %}
+	<link rel="stylesheet" href="../css/index.css">
+{% endblock %}
+
+{% block content %}
+	<div class="hand" id="thumb">
+        <div class="finger"></div>
+        <div class="finger"></div>
+        <div class="finger"></div>
+        <div class="finger"></div>
+        <div class="finger thumb"></div>
+        <div class="arm"></div>
+    </div>
+    <span class="hide" id="animation">+1</span>
+	<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+    <script src="http://cdn.bootcss.com/systemjs/0.20.2/system.js"></script>
+	<script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js"></script>
+	<script src="/scripts/util.js"></script>
+	<script>
+		SystemJS.import('/scripts/index-es.js').then(function(m){
+        	$.extend({thumb: m.Thumb});
+        	callback();
+    	});
+    	function callback(){
+            var p = new $.thumb(0, $('#thumb'));
+            p.clickAction(changeCount);	
+    	}
+
+    	function changeCount(){
+    		axios.post('/updatePraise')
+  			.then(function(response){
+  				console.log(response);
+  			})
+  			.catch(function(err){
+    			console.log(err);
+  			});
+    	}
+	</script>
+{% endblock %}
