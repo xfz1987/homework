@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {%endblock%}
+
+{% block head %}
+	<link rel="stylesheet" href="../css/index.css">
+    <script src="https://cdn.bootcss.com/x-tag/1.5.11/x-tag-core.min.js"></script>
+{% endblock %}
+
+{% block content %}
+	 <x-praise></x-praise>
+  <script src="/scripts/tag.es"></script>
+	 <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+	<script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js"></script>
+	<script src="/scripts/util.js"></script>
+	<script>
+		// SystemJS.import('/scripts/index-es.js').then(function(m){
+  //       	$.extend({thumb: m.Thumb});
+  //       	callback();
+  //   	});
+  //   	function callback(){
+  //           var p = new $.thumb(0, $('#thumb'));
+  //           p.clickAction(changeCount);	
+  //   	}
+
+  //   	function changeCount(){
+  //   		axios.post('/updatePraise')
+  // 			.then(function(response){
+  // 				console.log(response);
+  // 			})
+  // 			.catch(function(err){
+  //   			console.log(err);
+  // 			});
+  //   	}
+	</script>
+{% endblock %}
