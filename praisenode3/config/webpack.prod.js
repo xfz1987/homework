@@ -41,7 +41,7 @@ module.exports = {
         ]
 	},
 	plugins: [
-		new webpack.DefinePlugin({'process.env.NODE_ENV':"dev"}),
+		new webpack.DefinePlugin({'process.env.NODE_ENV':"prod"}),
 		new ExtractTextPlugin('public/css/[name]-[hash:5].css'),
         //压缩js
         new webpack.optimize.UglifyJsPlugin({

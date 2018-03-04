@@ -10,6 +10,7 @@
 > 执行 gulp 命令
 
 2.使用webpack配置上线版本及开发版本
+> 使用better-npm-run
 ![](helpImg/webpack_1.png)
 ```
 //webpack.config.js
