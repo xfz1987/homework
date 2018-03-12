@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  	<meta charset="utf-8">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+  	<title>{% block title %}{% endblock %}</title>
+  	<meta charset="UTF-8">
+	  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width">
+	  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+   	<meta name="format-detection" content="telephone=no, email=no">
+   	<meta name="renderer" content="webkit"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	<meta name="HandheldFriendly" content="true"><meta name="MobileOptimized" content="320">
+   	<meta name="screen-orientation" content="portrait"><meta name="x5-orientation" content="portrait">
+   	<meta name="full-screen" content="yes">
+   	<meta name="x5-fullscreen" content="true">
+   	<meta name="browsermode" content="application">
+   	<meta name="x5-page-mode" content="app">
+   	<meta name="msapplication-tap-highlight" content="no">
+    {% block head %}
+    <link rel="dns-prefetch" href="//cdn.bootcss.com">
+    <script src="https://cdn.bootcss.com/lazyload/2.0.3/lazyload-min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.17.1/axios.js"></script>
+    <script src="https://cdn.bootcss.com/x-tag/1.5.11/x-tag-core.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.js"></script>
+    <script src="https://cdn.bootcss.com/localforage/1.6.0/localforage.js"></script>
+    {% endblock %}
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <a href="/index/star">jump to star</a>
+    <a href="/index/praise">jump to thumb</a>
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+    <script>
+      $(document).pjax('a', '#content');
+      //存一个广告
+      localforage.getItem('advertisement',function(err,value){
+        if(value == null){
+          $.ajax({
+            url:'/index/adv',
+            success:function(data){
+              localforage.setItem('advertisement', data);
+              $('body').prepend(data);
+            }
+          });
+        }else{
+          $('body').prepend(value)
+        }
+      });
+    </script>
+    {% block script %}{% endblock %}
+</body>
+</html>
