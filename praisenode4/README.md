@@ -4,9 +4,7 @@
 > - gulp处理node后端代码并热更新 gulp 
 > - webpack打包静态资源等前端代码并热更新 npm run dev
 > - supervisor启动node服务，更新代码自动重启服务 cd build -> supervisor app.js
-> - 
-> - 
-> - 
+
 ## 项目构建（在作业三的基础上）
 1.根据雅虎军规将页面CDN预加载等属性配置完备
 ```
